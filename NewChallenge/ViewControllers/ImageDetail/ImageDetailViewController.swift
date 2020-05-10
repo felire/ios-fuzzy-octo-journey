@@ -10,7 +10,6 @@ import UIKit
 
 class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet weak var scrollview: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var author: UILabel!
     @IBOutlet weak var camera: UILabel!
@@ -22,19 +21,11 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
             self.author.text = image.author
             self.camera.text = image.camera
             self.fullPicture = image.fullPicture
-            self.scrollview.addSubview(self.imageView)
         }, id: self.imageId)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollview.minimumZoomScale = 0.1
-        scrollview.maximumZoomScale = 4.0
-        scrollview.zoomScale = 1.0
-        scrollview.delegate = self as? UIScrollViewDelegate
         self.setItem()
-    }
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        return imageView
     }
     @IBAction func share(_ sender: UIButton) {
        let objectsToShare: [Any] = [NSURL(string: self.fullPicture)]
